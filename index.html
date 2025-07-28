@@ -4,209 +4,218 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuiApp - Tu móvil tu guía</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .hero-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        .smooth-scroll {
-            scroll-behavior: smooth;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="smooth-scroll">
+<body>
     <!-- Header -->
-    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
-        <nav class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <i class="fas fa-mobile-alt text-2xl text-blue-600 mr-2"></i>
-                    <span class="text-xl font-bold text-gray-800">GuiApp</span>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>GuiApp</span>
                 </div>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#inicio" class="text-gray-700 hover:text-blue-600 transition duration-300">Inicio</a>
-                    <a href="#servicios" class="text-gray-700 hover:text-blue-600 transition duration-300">Servicios</a>
-                    <a href="#destinos" class="text-gray-700 hover:text-blue-600 transition duration-300">Destinos</a>
-                    <a href="#acerca" class="text-gray-700 hover:text-blue-600 transition duration-300">Acerca de</a>
-                    <a href="#contacto" class="text-gray-700 hover:text-blue-600 transition duration-300">Contacto</a>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#inicio" class="nav-link">Inicio</a>
+                    <a href="#servicios" class="nav-link">Servicios</a>
+                    <a href="#destinos" class="nav-link">Destinos</a>
+                    <a href="#acerca" class="nav-link">Acerca de</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="#inicio" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Inicio</a>
-                <a href="#servicios" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Servicios</a>
-                <a href="#destinos" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Destinos</a>
-                <a href="#acerca" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Acerca de</a>
-                <a href="#contacto" class="block py-2 text-gray-700 hover:text-blue-600 transition duration-300">Contacto</a>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
-        <div class="container mx-auto px-6 text-center">
-            <div class="animate-fade-in">
-                <i class="fas fa-mobile-alt text-6xl mb-6"></i>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">GuiApp</h1>
-                <p class="text-2xl md:text-3xl mb-8 font-light">Tu móvil tu guía</p>
-                <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-90">
-                    Descubre el mundo con la mejor aplicación de turismo. Encuentra destinos increíbles, 
-                    planifica tu viaje perfecto y vive experiencias únicas.
-                </p>
-                <div class="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
-                    <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition duration-300 block md:inline-block">
-                        <i class="fab fa-apple mr-2"></i>Descargar para iOS
-                    </button>
-                    <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300 block md:inline-block">
-                        <i class="fab fa-google-play mr-2"></i>Descargar para Android
-                    </button>
-                </div>
+    <section id="inicio" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-mobile-alt"></i>
             </div>
+            <h1 class="hero-title">GuiApp</h1>
+            <p class="hero-subtitle">Tu móvil tu guía</p>
+            <p class="hero-description">
+                Descubre el mundo con la mejor aplicación de turismo. Encuentra destinos increíbles, 
+                planifica tu viaje perfecto y vive experiencias únicas que recordarás para siempre.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    <i class="fab fa-apple"></i>
+                    Descargar para iOS
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fab fa-google-play"></i>
+                    Descargar para Android
+                </button>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#servicios">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
     <!-- Servicios Section -->
-    <section id="servicios" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Nuestros Servicios</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p class="section-subtitle">
                     Todo lo que necesitas para tu viaje perfecto en una sola aplicación
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                    <div class="text-blue-600 text-4xl mb-4">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Mapas Interactivos</h3>
-                    <p class="text-gray-600">Navega con mapas detallados y encuentra los mejores lugares cerca de ti.</p>
+                    <h3 class="service-title">Mapas Interactivos</h3>
+                    <p class="service-description">Navega con mapas detallados y encuentra los mejores lugares cerca de ti con GPS en tiempo real.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                    <div class="text-blue-600 text-4xl mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-hotel"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Reservas de Hotel</h3>
-                    <p class="text-gray-600">Encuentra y reserva los mejores hoteles al mejor precio.</p>
+                    <h3 class="service-title">Reservas de Hotel</h3>
+                    <p class="service-description">Encuentra y reserva los mejores hoteles al mejor precio con ofertas exclusivas.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                    <div class="text-blue-600 text-4xl mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-plane"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Vuelos</h3>
-                    <p class="text-gray-600">Compara y reserva vuelos a los mejores destinos del mundo.</p>
+                    <h3 class="service-title">Vuelos</h3>
+                    <p class="service-description">Compara y reserva vuelos a los mejores destinos del mundo con las mejores aerolíneas.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                    <div class="text-blue-600 text-4xl mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Restaurantes</h3>
-                    <p class="text-gray-600">Descubre la mejor gastronomía local y reserva mesa.</p>
+                    <h3 class="service-title">Restaurantes</h3>
+                    <p class="service-description">Descubre la mejor gastronomía local y reserva mesa en los restaurantes más populares.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                    <div class="text-blue-600 text-4xl mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-camera"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Guías Turísticas</h3>
-                    <p class="text-gray-600">Accede a guías completas con información detallada de cada destino.</p>
+                    <h3 class="service-title">Guías Turísticas</h3>
+                    <p class="service-description">Accede a guías completas con información detallada y recomendaciones locales.</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                    <div class="text-blue-600 text-4xl mb-4">
+                <div class="service-card">
+                    <div class="service-icon">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-4">Planificador</h3>
-                    <p class="text-gray-600">Organiza tu itinerario completo de viaje de manera fácil y rápida.</p>
+                    <h3 class="service-title">Planificador</h3>
+                    <p class="service-description">Organiza tu itinerario completo de viaje de manera fácil, rápida e intuitiva.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Destinos Section -->
-    <section id="destinos" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Destinos Populares</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Explora los destinos más increíbles del mundo
+    <section id="destinos" class="destinations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Destinos Populares</h2>
+                <p class="section-subtitle">
+                    Explora los destinos más increíbles y fascinantes del mundo
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="relative overflow-hidden rounded-xl shadow-lg card-hover">
-                    <img src="/placeholder.svg?height=300&width=400" alt="París" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h3 class="text-2xl font-bold">París</h3>
-                        <p class="text-sm opacity-90">La ciudad del amor</p>
+            <div class="destinations-grid">
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="/placeholder.svg?height=300&width=400" alt="París">
+                        <div class="destination-overlay">
+                            <div class="destination-info">
+                                <h3>París</h3>
+                                <p>La ciudad del amor</p>
+                                <span class="destination-price">Desde $899</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden rounded-xl shadow-lg card-hover">
-                    <img src="/placeholder.svg?height=300&width=400" alt="Tokio" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h3 class="text-2xl font-bold">Tokio</h3>
-                        <p class="text-sm opacity-90">Tradición y modernidad</p>
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Tokio">
+                        <div class="destination-overlay">
+                            <div class="destination-info">
+                                <h3>Tokio</h3>
+                                <p>Tradición y modernidad</p>
+                                <span class="destination-price">Desde $1,299</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden rounded-xl shadow-lg card-hover">
-                    <img src="/placeholder.svg?height=300&width=400" alt="Nueva York" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h3 class="text-2xl font-bold">Nueva York</h3>
-                        <p class="text-sm opacity-90">La ciudad que nunca duerme</p>
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Nueva York">
+                        <div class="destination-overlay">
+                            <div class="destination-info">
+                                <h3>Nueva York</h3>
+                                <p>La ciudad que nunca duerme</p>
+                                <span class="destination-price">Desde $799</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden rounded-xl shadow-lg card-hover">
-                    <img src="/placeholder.svg?height=300&width=400" alt="Barcelona" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h3 class="text-2xl font-bold">Barcelona</h3>
-                        <p class="text-sm opacity-90">Arte y arquitectura</p>
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Barcelona">
+                        <div class="destination-overlay">
+                            <div class="destination-info">
+                                <h3>Barcelona</h3>
+                                <p>Arte y arquitectura</p>
+                                <span class="destination-price">Desde $699</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden rounded-xl shadow-lg card-hover">
-                    <img src="/placeholder.svg?height=300&width=400" alt="Bali" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h3 class="text-2xl font-bold">Bali</h3>
-                        <p class="text-sm opacity-90">Paraíso tropical</p>
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Bali">
+                        <div class="destination-overlay">
+                            <div class="destination-info">
+                                <h3>Bali</h3>
+                                <p>Paraíso tropical</p>
+                                <span class="destination-price">Desde $999</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="relative overflow-hidden rounded-xl shadow-lg card-hover">
-                    <img src="/placeholder.svg?height=300&width=400" alt="Roma" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h3 class="text-2xl font-bold">Roma</h3>
-                        <p class="text-sm opacity-90">Historia milenaria</p>
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="/placeholder.svg?height=300&width=400" alt="Roma">
+                        <div class="destination-overlay">
+                            <div class="destination-info">
+                                <h3>Roma</h3>
+                                <p>Historia milenaria</p>
+                                <span class="destination-price">Desde $749</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,121 +223,131 @@
     </section>
 
     <!-- Acerca de Section -->
-    <section id="acerca" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold text-gray-800 mb-6">Acerca de GuiApp</h2>
-                    <p class="text-lg text-gray-600 mb-6">
+    <section id="acerca" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Acerca de GuiApp</h2>
+                    <p class="about-description">
                         GuiApp nació de la pasión por viajar y la necesidad de tener toda la información 
-                        turística en un solo lugar. Somos un equipo de viajeros y tecnólogos que entiende 
-                        las necesidades del turista moderno.
+                        turística en un solo lugar. Somos un equipo de viajeros experimentados y tecnólogos 
+                        innovadores que entiende perfectamente las necesidades del turista moderno.
                     </p>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Nuestra misión es hacer que cada viaje sea una experiencia inolvidable, 
-                        proporcionando las herramientas necesarias para planificar, descubrir y disfrutar 
-                        de cada destino al máximo.
+                    <p class="about-description">
+                        Nuestra misión es hacer que cada viaje sea una experiencia inolvidable y única, 
+                        proporcionando las herramientas más avanzadas y necesarias para planificar, 
+                        descubrir y disfrutar de cada destino al máximo.
                     </p>
-                    <div class="grid grid-cols-3 gap-8 text-center">
-                        <div>
-                            <div class="text-3xl font-bold text-blue-600">500K+</div>
-                            <div class="text-gray-600">Usuarios</div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">500K+</div>
+                            <div class="stat-label">Usuarios Activos</div>
                         </div>
-                        <div>
-                            <div class="text-3xl font-bold text-blue-600">150+</div>
-                            <div class="text-gray-600">Países</div>
+                        <div class="stat">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label">Países Disponibles</div>
                         </div>
-                        <div>
-                            <div class="text-3xl font-bold text-blue-600">1M+</div>
-                            <div class="text-gray-600">Destinos</div>
+                        <div class="stat">
+                            <div class="stat-number">1M+</div>
+                            <div class="stat-label">Destinos Únicos</div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <img src="/placeholder.svg?height=400&width=400" alt="Acerca de GuiApp" class="rounded-xl shadow-lg mx-auto">
+                <div class="about-image">
+                    <img src="/placeholder.svg?height=500&width=500" alt="GuiApp Interface">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto Section -->
-    <section id="contacto" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Contáctanos</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    ¿Tienes alguna pregunta? Estamos aquí para ayudarte
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctanos</h2>
+                <p class="section-subtitle">
+                    ¿Tienes alguna pregunta o sugerencia? Estamos aquí para ayudarte
                 </p>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-12">
-                <div>
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <i class="fas fa-map-marker-alt text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800 mb-2">Dirección</h3>
-                                <p class="text-gray-600">Av. Principal 123, Ciudad, País</p>
-                            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <i class="fas fa-phone text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800 mb-2">Teléfono</h3>
-                                <p class="text-gray-600">+1 (555) 123-4567</p>
-                            </div>
+                        <div class="contact-details">
+                            <h3>Nuestra Oficina</h3>
+                            <p>Av. Turismo 123, Centro<br>Ciudad de México, México</p>
                         </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <i class="fas fa-envelope text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800 mb-2">Email</h3>
-                                <p class="text-gray-600">info@guiapp.com</p>
-                            </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
                         </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <i class="fas fa-clock text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-800 mb-2">Horario</h3>
-                                <p class="text-gray-600">Lun - Vie: 9:00 AM - 6:00 PM</p>
-                            </div>
+                        <div class="contact-details">
+                            <h3>Teléfono</h3>
+                            <p>+52 (55) 1234-5678<br>+52 (55) 8765-4321</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@guiapp.com<br>soporte@guiapp.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Horario de Atención</h3>
+                            <p>Lun - Vie: 9:00 AM - 7:00 PM<br>Sáb: 10:00 AM - 4:00 PM</p>
                         </div>
                     </div>
                 </div>
                 
-                <div>
-                    <form class="space-y-6">
-                        <div>
-                            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required>
                         </div>
                         
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         
-                        <div>
-                            <label for="asunto" class="block text-sm font-medium text-gray-700 mb-2">Asunto</label>
-                            <input type="text" id="asunto" name="asunto" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono">
                         </div>
                         
-                        <div>
-                            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="soporte">Soporte Técnico</option>
+                                <option value="reservas">Consulta de Reservas</option>
+                                <option value="sugerencias">Sugerencias</option>
+                                <option value="otros">Otros</option>
+                            </select>
                         </div>
                         
-                        <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
                             Enviar Mensaje
                         </button>
                     </form>
@@ -338,132 +357,112 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-mobile-alt text-2xl text-blue-400 mr-2"></i>
-                        <span class="text-xl font-bold">GuiApp</span>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>GuiApp</span>
+                        </div>
+                        <p class="footer-description">
+                            Tu compañero perfecto para descubrir el mundo. Más que una app, 
+                            somos tu guía personal hacia aventuras extraordinarias.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mb-4">Tu móvil tu guía para descubrir el mundo.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Servicios</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Mapas Interactivos</a></li>
+                            <li><a href="#">Reservas de Hoteles</a></li>
+                            <li><a href="#">Vuelos Baratos</a></li>
+                            <li><a href="#">Restaurantes</a></li>
+                            <li><a href="#">Guías Turísticas</a></li>
+                            <li><a href="#">Planificador de Viajes</a></li>
+                        </ul>
                     </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Servicios</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition duration-300">Mapas</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Hoteles</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Vuelos</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Restaurantes</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Destinos</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition duration-300">Europa</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Asia</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">América</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">África</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Soporte</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition duration-300">Centro de Ayuda</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Términos de Uso</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Privacidad</a></li>
-                        <li><a href="#" class="hover:text-white transition duration-300">Contacto</a></li>
-                    </ul>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Destinos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Europa</a></li>
+                            <li><a href="#">Asia</a></li>
+                            <li><a href="#">América del Norte</a></li>
+                            <li><a href="#">América del Sur</a></li>
+                            <li><a href="#">África</a></li>
+                            <li><a href="#">Oceanía</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Soporte</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Centro de Ayuda</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Términos de Uso</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Blog de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Descarga la App</h3>
+                        <p class="footer-app-text">Lleva GuiApp contigo a donde vayas</p>
+                        <div class="footer-app-buttons">
+                            <a href="#" class="app-button">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span>Descargar en</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="app-button">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span>Disponible en</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 GuiApp. Todos los derechos reservados.</p>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 GuiApp. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Cookies</a>
+                        <a href="#">Mapa del Sitio</a>
+                        <a href="#">Accesibilidad</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-            this.reset();
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.classList.add('bg-white/95', 'backdrop-blur-sm');
-            } else {
-                header.classList.remove('bg-white/95', 'backdrop-blur-sm');
-            }
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.card-hover, section > div').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
