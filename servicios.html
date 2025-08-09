@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - GuiApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>GuiApp</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="servicios.html" class="nav-link active">Servicios</a>
+                    <a href="destinos.html" class="nav-link">Destinos</a>
+                    <a href="acerca.html" class="nav-link">Acerca de</a>
+                    <a href="contacto.html" class="nav-link">Contacto</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero servicios-hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h1 class="hero-title">Nuestros Servicios</h1>
+            <p class="hero-subtitle">Todo lo que necesitas para tu viaje perfecto</p>
+            <p class="hero-description">
+                Descubre todas las herramientas y funcionalidades que GuiApp pone a tu disposición 
+                para hacer de cada viaje una experiencia inolvidable y completamente personalizada.
+            </p>
+        </div>
+    </section>
+
+    <!-- Servicios Detallados -->
+    <section class="services-detailed">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Servicios Principales</h2>
+                <p class="section-subtitle">
+                    Herramientas avanzadas diseñadas para el viajero moderno
+                </p>
+            </div>
+
+            <!-- Mapas Interactivos -->
+            <div class="service-detail-section">
+                <div class="service-detail-content">
+                    <div class="service-detail-text">
+                        <div class="service-detail-header">
+                            <div class="service-detail-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3>Mapas Interactivos Avanzados</h3>
+                        </div>
+                        <p class="service-detail-description">
+                            Nuestros mapas interactivos te ofrecen una experiencia de navegación sin precedentes. 
+                            Con tecnología GPS de alta precisión, mapas offline descargables y rutas personalizadas 
+                            según tus preferencias de transporte.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Navegación GPS en tiempo real</li>
+                            <li><i class="fas fa-check"></i> Mapas offline para uso sin conexión</li>
+                            <li><i class="fas fa-check"></i> Rutas personalizadas (coche, transporte público, bicicleta, caminando)</li>
+                            <li><i class="fas fa-check"></i> Puntos de interés categorizados</li>
+                            <li><i class="fas fa-check"></i> Información de tráfico en tiempo real</li>
+                            <li><i class="fas fa-check"></i> Búsqueda de lugares por voz</li>
+                        </ul>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">50M+</span>
+                                <span class="stat-label">Puntos de Interés</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">200+</span>
+                                <span class="stat-label">Países Cubiertos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">99.9%</span>
+                                <span class="stat-label">Precisión GPS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-image">
+                        <img src="https://via.placeholder.com/500x400/4A90E2/FFFFFF?text=Mapas+Interactivos" alt="Mapas Interactivos">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservas de Hotel -->
+            <div class="service-detail-section reverse">
+                <div class="service-detail-content">
+                    <div class="service-detail-image">
+                        <img src="https://via.placeholder.com/500x400/50C878/FFFFFF?text=Reservas+de+Hotel" alt="Reservas de Hotel">
+                    </div>
+                    <div class="service-detail-text">
+                        <div class="service-detail-header">
+                            <div class="service-detail-icon">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <h3>Sistema de Reservas Inteligente</h3>
+                        </div>
+                        <p class="service-detail-description">
+                            Encuentra y reserva los mejores hoteles con nuestro sistema inteligente que compara 
+                            precios en tiempo real, ofrece descuentos exclusivos y garantiza las mejores tarifas 
+                            del mercado.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Comparación de precios en tiempo real</li>
+                            <li><i class="fas fa-check"></i> Descuentos exclusivos para usuarios GuiApp</li>
+                            <li><i class="fas fa-check"></i> Filtros avanzados (precio, ubicación, comodidades)</li>
+                            <li><i class="fas fa-check"></i> Reseñas verificadas de usuarios</li>
+                            <li><i class="fas fa-check"></i> Cancelación gratuita hasta 24h antes</li>
+                            <li><i class="fas fa-check"></i> Programa de fidelización con puntos</li>
+                        </ul>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">2M+</span>
+                                <span class="stat-label">Hoteles Disponibles</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">15%</span>
+                                <span class="stat-label">Ahorro Promedio</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Soporte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vuelos -->
+            <div class="service-detail-section">
+                <div class="service-detail-content">
+                    <div class="service-detail-text">
+                        <div class="service-detail-header">
+                            <div class="service-detail-icon">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <h3>Búsqueda de Vuelos Avanzada</h3>
+                        </div>
+                        <p class="service-detail-description">
+                            Nuestra plataforma de vuelos te permite encontrar las mejores ofertas, comparar 
+                            aerolíneas y reservar con total confianza. Incluye alertas de precio y recomendaciones 
+                            personalizadas.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Búsqueda flexible de fechas</li>
+                            <li><i class="fas fa-check"></i> Comparación de múltiples aerolíneas</li>
+                            <li><i class="fas fa-check"></i> Alertas de precio personalizadas</li>
+                            <li><i class="fas fa-check"></i> Información de equipaje incluido</li>
+                            <li><i class="fas fa-check"></i> Selección de asientos</li>
+                            <li><i class="fas fa-check"></i> Check-in online integrado</li>
+                        </ul>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Aerolíneas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Destinos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">20%</span>
+                                <span class="stat-label">Ahorro Promedio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-image">
+                        <img src="https://via.placeholder.com/500x400/FF6B35/FFFFFF?text=Búsqueda+de+Vuelos" alt="Búsqueda de Vuelos">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurantes -->
+            <div class="service-detail-section reverse">
+                <div class="service-detail-content">
+                    <div class="service-detail-image">
+                        <img src="https://via.placeholder.com/500x400/FFD700/FFFFFF?text=Restaurantes" alt="Restaurantes">
+                    </div>
+                    <div class="service-detail-text">
+                        <div class="service-detail-header">
+                            <div class="service-detail-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Descubre la Gastronomía Local</h3>
+                        </div>
+                        <p class="service-detail-description">
+                            Explora la mejor gastronomía local con nuestras recomendaciones personalizadas, 
+                            reservas de mesa y experiencias culinarias únicas que te conectarán con la cultura 
+                            de cada destino.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Recomendaciones personalizadas por ubicación</li>
+                            <li><i class="fas fa-check"></i> Reservas de mesa en tiempo real</li>
+                            <li><i class="fas fa-check"></i> Menús digitales con fotos</li>
+                            <li><i class="fas fa-check"></i> Reseñas de usuarios verificados</li>
+                            <li><i class="fas fa-check"></i> Filtros por tipo de cocina y precio</li>
+                            <li><i class="fas fa-check"></i> Experiencias gastronómicas exclusivas</li>
+                        </ul>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Restaurantes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Tipos de Cocina</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4.8★</span>
+                                <span class="stat-label">Rating Promedio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guías Turísticas -->
+            <div class="service-detail-section">
+                <div class="service-detail-content">
+                    <div class="service-detail-text">
+                        <div class="service-detail-header">
+                            <div class="service-detail-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h3>Guías Turísticas Digitales</h3>
+                        </div>
+                        <p class="service-detail-description">
+                            Accede a guías completas creadas por expertos locales y viajeros experimentados. 
+                            Incluye rutas temáticas, información histórica, consejos prácticos y experiencias 
+                            auténticas que van más allá de los lugares turísticos tradicionales.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Guías creadas por expertos locales</li>
+                            <li><i class="fas fa-check"></i> Rutas temáticas personalizadas</li>
+                            <li><i class="fas fa-check"></i> Información histórica y cultural</li>
+                            <li><i class="fas fa-check"></i> Consejos de seguridad y transporte</li>
+                            <li><i class="fas fa-check"></i> Experiencias fuera de lo común</li>
+                            <li><i class="fas fa-check"></i> Contenido multimedia (fotos, videos, audio)</li>
+                        </ul>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">500+</span>
+                                <span class="stat-label">Guías Disponibles</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100+</span>
+                                <span class="stat-label">Expertos Locales</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50K+</span>
+                                <span class="stat-label">Fotos HD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-detail-image">
+                        <img src="https://via.placeholder.com/500x400/9B59B6/FFFFFF?text=Guías+Turísticas" alt="Guías Turísticas">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planificador -->
+            <div class="service-detail-section reverse">
+                <div class="service-detail-content">
+                    <div class="service-detail-image">
+                        <img src="https://via.placeholder.com/500x400/3498DB/FFFFFF?text=Planificador" alt="Planificador">
+                    </div>
+                    <div class="service-detail-text">
+                        <div class="service-detail-header">
+                            <div class="service-detail-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>Planificador de Viajes Inteligente</h3>
+                        </div>
+                        <p class="service-detail-description">
+                            Organiza tu viaje perfecto con nuestro planificador inteligente que sugiere itinerarios 
+                            basados en tus preferencias, tiempo disponible y presupuesto. Sincroniza con tu calendario 
+                            y comparte con compañeros de viaje.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Itinerarios sugeridos por IA</li>
+                            <li><i class="fas fa-check"></i> Sincronización con calendario</li>
+                            <li><i class="fas fa-check"></i> Compartir con compañeros de viaje</li>
+                            <li><i class="fas fa-check"></i> Recordatorios y notificaciones</li>
+                            <li><i class="fas fa-check"></i> Control de presupuesto integrado</li>
+                            <li><i class="fas fa-check"></i> Exportación a PDF y apps</li>
+                        </ul>
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">1M+</span>
+                                <span class="stat-label">Viajes Planificados</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">95%</span>
+                                <span class="stat-label">Satisfacción</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">30%</span>
+                                <span class="stat-label">Ahorro de Tiempo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Adicionales -->
+    <section class="additional-services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Servicios Adicionales</h2>
+                <p class="section-subtitle">
+                    Funcionalidades extra que hacen la diferencia
+                </p>
+            </div>
+            
+            <div class="additional-services-grid">
+                <div class="additional-service-card">
+                    <div class="additional-service-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Traductor Integrado</h3>
+                    <p>Traduce en tiempo real más de 100 idiomas con reconocimiento de voz y texto.</p>
+                </div>
+                
+                <div class="additional-service-card">
+                    <div class="additional-service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>WiFi Finder</h3>
+                    <p>Encuentra puntos WiFi gratuitos y seguros en cualquier parte del mundo.</p>
+                </div>
+                
+                <div class="additional-service-card">
+                    <div class="additional-service-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Conversor de Moneda</h3>
+                    <p>Conversión en tiempo real con tasas actualizadas y sin comisiones ocultas.</p>
+                </div>
+                
+                <div class="additional-service-card">
+                    <div class="additional-service-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Clima Local</h3>
+                    <p>Pronósticos detallados con recomendaciones de vestimenta y actividades.</p>
+                </div>
+                
+                <div class="additional-service-card">
+                    <div class="additional-service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguridad Viajera</h3>
+                    <p>Alertas de seguridad, información de embajadas y asistencia 24/7.</p>
+                </div>
+                
+                <div class="additional-service-card">
+                    <div class="additional-service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunidad Viajera</h3>
+                    <p>Conecta con otros viajeros, comparte experiencias y encuentra compañeros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>GuiApp</span>
+                        </div>
+                        <p class="footer-description">
+                            Tu compañero perfecto para descubrir el mundo. Más que una app, 
+                            somos tu guía personal hacia aventuras extraordinarias.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Servicios</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Mapas Interactivos</a></li>
+                            <li><a href="#">Reservas de Hoteles</a></li>
+                            <li><a href="#">Vuelos Baratos</a></li>
+                            <li><a href="#">Restaurantes</a></li>
+                            <li><a href="#">Guías Turísticas</a></li>
+                            <li><a href="#">Planificador de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Destinos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Europa</a></li>
+                            <li><a href="#">Asia</a></li>
+                            <li><a href="#">América del Norte</a></li>
+                            <li><a href="#">América del Sur</a></li>
+                            <li><a href="#">África</a></li>
+                            <li><a href="#">Oceanía</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Soporte</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Centro de Ayuda</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Términos de Uso</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Blog de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Descarga la App</h3>
+                        <p class="footer-app-text">Lleva GuiApp contigo a donde vayas</p>
+                        <div class="footer-app-buttons">
+                            <a href="#" class="app-button">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span>Descargar en</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="app-button">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span>Disponible en</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 GuiApp. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Cookies</a>
+                        <a href="#">Mapa del Sitio</a>
+                        <a href="#">Accesibilidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

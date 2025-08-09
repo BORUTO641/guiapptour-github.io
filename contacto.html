@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - GuiApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+        
+        .contact-info-section {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 20px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-method-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .contact-method-info h3 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .contact-method-info p {
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .contact-form-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .form-checkbox input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .form-checkbox label {
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .faq-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+        
+        .office-locations {
+            padding: 4rem 0;
+        }
+        
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .office-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .office-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .office-flag {
+            width: 80px;
+            height: 60px;
+            border-radius: 10px;
+            margin: 0 auto 1.5rem;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+        
+        .office-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .office-address {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .office-contact {
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        .support-channels {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .support-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .support-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .support-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .support-description {
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .support-time {
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        
+        .contact-map {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 4rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>GuiApp</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="servicios.html" class="nav-link">Servicios</a>
+                    <a href="destinos.html" class="nav-link">Destinos</a>
+                    <a href="acerca.html" class="nav-link">Acerca de</a>
+                    <a href="contacto.html" class="nav-link active">Contacto</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero contact-hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h1 class="hero-title">Contáctanos</h1>
+            <p class="hero-subtitle">Estamos aquí para ayudarte</p>
+            <p class="hero-description">
+                ¿Tienes alguna pregunta, sugerencia o necesitas ayuda? Nuestro equipo está 
+                disponible 24/7 para brindarte la mejor atención y resolver cualquier consulta 
+                que tengas sobre GuiApp.
+            </p>
+        </div>
+    </section>
+
+    <!-- Información de Contacto y Formulario -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Información de Contacto -->
+                <div class="contact-info-section">
+                    <h2 class="section-title">Información de Contacto</h2>
+                    <p class="section-subtitle">
+                        Múltiples formas de ponerte en contacto con nosotros
+                    </p>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-method-info">
+                            <h3>Oficina Principal</h3>
+                            <p>Av. Turismo 123, Centro<br>Ciudad de México, México<br>Código Postal: 06000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-method-info">
+                            <h3>Teléfono</h3>
+                            <p>+52 (55) 1234-5678<br>+52 (55) 8765-4321<br>Lun - Vie: 9:00 AM - 7:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-info">
+                            <h3>Email</h3>
+                            <p>info@guiapp.com<br>soporte@guiapp.com<br>ventas@guiapp.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-method-info">
+                            <h3>Horario de Atención</h3>
+                            <p>Lunes - Viernes: 9:00 AM - 7:00 PM<br>Sábado: 10:00 AM - 4:00 PM<br>Domingo: Cerrado</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="contact-method-info">
+                            <h3>Chat en Vivo</h3>
+                            <p>Disponible 24/7<br>Respuesta inmediata<br>Idiomas: Español, Inglés, Portugués</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="contact-method-info">
+                            <h3>WhatsApp Business</h3>
+                            <p>+52 (55) 9876-5432<br>Respuesta en menos de 1 hora<br>Enviar fotos y documentos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulario de Contacto -->
+                <div class="contact-form-section">
+                    <h2 class="section-title">Envíanos un Mensaje</h2>
+                    <p class="section-subtitle">
+                        Completa el formulario y te responderemos en menos de 24 horas
+                    </p>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre Completo *</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Apellidos *</label>
+                                <input type="text" id="apellido" name="apellido" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pais">País *</label>
+                                <select id="pais" name="pais" required>
+                                    <option value="">Selecciona tu país</option>
+                                    <option value="mexico">México</option>
+                                    <option value="colombia">Colombia</option>
+                                    <option value="argentina">Argentina</option>
+                                    <option value="chile">Chile</option>
+                                    <option value="peru">Perú</option>
+                                    <option value="ecuador">Ecuador</option>
+                                    <option value="venezuela">Venezuela</option>
+                                    <option value="brasil">Brasil</option>
+                                    <option value="espana">España</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad</label>
+                                <input type="text" id="ciudad" name="ciudad">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="asunto">Asunto *</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="soporte-tecnico">Soporte Técnico</option>
+                                <option value="reservas">Consulta de Reservas</option>
+                                <option value="facturacion">Facturación y Pagos</option>
+                                <option value="sugerencias">Sugerencias y Mejoras</option>
+                                <option value="partnership">Alianzas Comerciales</option>
+                                <option value="empleo">Oportunidades de Empleo</option>
+                                <option value="prensa">Prensa y Medios</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="urgencia">Nivel de Urgencia</label>
+                            <select id="urgencia" name="urgencia">
+                                <option value="baja">Baja - Consulta general</option>
+                                <option value="media">Media - Necesito ayuda pronto</option>
+                                <option value="alta">Alta - Problema urgente</option>
+                                <option value="critica">Crítica - Necesito ayuda inmediata</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" rows="6" placeholder="Describe tu consulta o solicitud en detalle..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="adjuntos">Archivos Adjuntos</label>
+                            <input type="file" id="adjuntos" name="adjuntos" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                            <small>Formatos permitidos: PDF, DOC, DOCX, JPG, PNG (máx. 5MB cada archivo)</small>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Suscribirme al newsletter para recibir ofertas y novedades</label>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="contacto-futuro" name="contacto-futuro">
+                            <label for="contacto-futuro">Autorizo a GuiApp a contactarme por teléfono o WhatsApp</label>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="terminos" name="terminos" required>
+                            <label for="terminos">Acepto los <a href="#" style="color: #667eea;">Términos y Condiciones</a> y la <a href="#" style="color: #667eea;">Política de Privacidad</a> *</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Canales de Soporte -->
+    <section class="support-channels">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Canales de Soporte</h2>
+                <p class="section-subtitle">
+                    Múltiples formas de obtener ayuda cuando la necesites
+                </p>
+            </div>
+            
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="support-title">Soporte Telefónico</h3>
+                    <p class="support-description">
+                        Habla directamente con nuestros especialistas en viajes y tecnología.
+                    </p>
+                    <p class="support-time">Lun - Vie: 9:00 AM - 7:00 PM</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="support-title">Chat en Vivo</h3>
+                    <p class="support-description">
+                        Obtén respuestas inmediatas a tus consultas en tiempo real.
+                    </p>
+                    <p class="support-time">Disponible 24/7</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="support-title">WhatsApp Business</h3>
+                    <p class="support-description">
+                        Envía mensajes, fotos y documentos para resolver problemas complejos.
+                    </p>
+                    <p class="support-time">Respuesta en < 1 hora</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="support-title">Email de Soporte</h3>
+                    <p class="support-description">
+                        Para consultas detalladas que requieren documentación o seguimiento.
+                    </p>
+                    <p class="support-time">Respuesta en 24 horas</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3 class="support-title">Centro de Ayuda</h3>
+                    <p class="support-description">
+                        Base de conocimientos con artículos, tutoriales y guías paso a paso.
+                    </p>
+                    <p class="support-time">Acceso 24/7</p>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="support-title">Comunidad</h3>
+                    <p class="support-description">
+                        Conecta con otros usuarios y comparte experiencias y consejos.
+                    </p>
+                    <p class="support-time">Activa 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oficinas Globales -->
+    <section class="office-locations">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Oficinas Globales</h2>
+                <p class="section-subtitle">
+                    Presencia internacional para servirte mejor
+                </p>
+            </div>
+            
+            <div class="office-grid">
+                <div class="office-card">
+                    <div class="office-flag">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="office-name">México</h3>
+                    <p class="office-address">
+                        Av. Turismo 123, Centro<br>
+                        Ciudad de México, México<br>
+                        Código Postal: 06000
+                    </p>
+                    <p class="office-contact">
+                        +52 (55) 1234-5678<br>
+                        mexico@guiapp.com
+                    </p>
+                </div>
+                
+                <div class="office-card">
+                    <div class="office-flag">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="office-name">Colombia</h3>
+                    <p class="office-address">
+                        Calle 72 #10-23<br>
+                        Bogotá, Colombia<br>
+                        Código Postal: 110221
+                    </p>
+                    <p class="office-contact">
+                        +57 (1) 234-5678<br>
+                        colombia@guiapp.com
+                    </p>
+                </div>
+                
+                <div class="office-card">
+                    <div class="office-flag">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="office-name">Argentina</h3>
+                    <p class="office-address">
+                        Av. Corrientes 1234<br>
+                        Buenos Aires, Argentina<br>
+                        Código Postal: C1043
+                    </p>
+                    <p class="office-contact">
+                        +54 (11) 2345-6789<br>
+                        argentina@guiapp.com
+                    </p>
+                </div>
+                
+                <div class="office-card">
+                    <div class="office-flag">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="office-name">España</h3>
+                    <p class="office-address">
+                        Calle Gran Vía 28<br>
+                        Madrid, España<br>
+                        Código Postal: 28013
+                    </p>
+                    <p class="office-contact">
+                        +34 91 234 56 78<br>
+                        espana@guiapp.com
+                    </p>
+                </div>
+                
+                <div class="office-card">
+                    <div class="office-flag">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="office-name">Brasil</h3>
+                    <p class="office-address">
+                        Av. Paulista 1000<br>
+                        São Paulo, Brasil<br>
+                        Código Postal: 01310-100
+                    </p>
+                    <p class="office-contact">
+                        +55 (11) 2345-6789<br>
+                        brasil@guiapp.com
+                    </p>
+                </div>
+                
+                <div class="office-card">
+                    <div class="office-flag">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <h3 class="office-name">Estados Unidos</h3>
+                    <p class="office-address">
+                        123 Travel Street<br>
+                        Miami, FL 33101<br>
+                        United States
+                    </p>
+                    <p class="office-contact">
+                        +1 (305) 234-5678<br>
+                        usa@guiapp.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-subtitle">
+                    Resolvemos las dudas más comunes de nuestros usuarios
+                </p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo puedo descargar la aplicación GuiApp?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GuiApp está disponible en las tiendas de aplicaciones oficiales. Para iOS, busca "GuiApp" en la App Store. Para Android, encuentra la app en Google Play Store. También puedes descargarla directamente desde nuestro sitio web oficial.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Es gratuita la aplicación GuiApp?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GuiApp es completamente gratuita para descargar y usar. Ofrecemos funcionalidades básicas sin costo. Para acceder a funciones premium como mapas offline ilimitados, guías exclusivas y soporte prioritario, contamos con planes de suscripción opcionales.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿En qué países está disponible GuiApp?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GuiApp está disponible en más de 50 países alrededor del mundo, incluyendo toda América Latina, Estados Unidos, Canadá, Europa y partes de Asia. Continuamos expandiendo nuestra presencia global para servir a más viajeros.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo funciona el sistema de reservas de hoteles?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestro sistema de reservas te permite buscar hoteles por ubicación, fechas, precio y comodidades. Puedes comparar precios de múltiples proveedores, leer reseñas verificadas y hacer reservas directamente desde la app con cancelación gratuita hasta 24 horas antes.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Qué idiomas soporta la aplicación?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GuiApp está disponible en español, inglés, portugués, francés e italiano. El contenido y las guías se adaptan automáticamente según el idioma seleccionado. También ofrecemos traducción en tiempo real para más de 100 idiomas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo puedo reportar un problema técnico?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Puedes reportar problemas técnicos a través de múltiples canales: chat en vivo dentro de la app, email a soporte@guiapp.com, WhatsApp Business, o llamando a nuestro centro de atención. Nuestro equipo técnico responderá en menos de 24 horas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Es seguro hacer pagos a través de GuiApp?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, todos los pagos en GuiApp están protegidos con encriptación SSL de 256 bits. Trabajamos con los proveedores de pago más seguros del mundo y cumplimos con los estándares PCI DSS para la protección de datos de tarjetas de crédito.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Puedo usar GuiApp sin conexión a internet?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, GuiApp ofrece funcionalidades offline. Puedes descargar mapas, guías y información de destinos para uso sin conexión. Los usuarios premium tienen acceso a mapas offline ilimitados y contenido descargable adicional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa de Contacto -->
+    <section class="contact-map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Encuéntranos</h2>
+                <p class="section-subtitle">
+                    Ubicación de nuestras oficinas principales
+                </p>
+            </div>
+            
+            <div class="contact-map" id="contactMap"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>GuiApp</span>
+                        </div>
+                        <p class="footer-description">
+                            Tu compañero perfecto para descubrir el mundo. Más que una app, 
+                            somos tu guía personal hacia aventuras extraordinarias.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Servicios</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Mapas Interactivos</a></li>
+                            <li><a href="#">Reservas de Hoteles</a></li>
+                            <li><a href="#">Vuelos Baratos</a></li>
+                            <li><a href="#">Restaurantes</a></li>
+                            <li><a href="#">Guías Turísticas</a></li>
+                            <li><a href="#">Planificador de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Destinos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Europa</a></li>
+                            <li><a href="#">Asia</a></li>
+                            <li><a href="#">América del Norte</a></li>
+                            <li><a href="#">América del Sur</a></li>
+                            <li><a href="#">África</a></li>
+                            <li><a href="#">Oceanía</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Soporte</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Centro de Ayuda</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Términos de Uso</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Blog de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Descarga la App</h3>
+                        <p class="footer-app-text">Lleva GuiApp contigo a donde vayas</p>
+                        <div class="footer-app-buttons">
+                            <a href="#" class="app-button">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span>Descargar en</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="app-button">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span>Disponible en</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 GuiApp. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Cookies</a>
+                        <a href="#">Mapa del Sitio</a>
+                        <a href="#">Accesibilidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Mapa de contacto
+        const contactMap = L.map('contactMap').setView([19.4326, -99.1332], 13);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(contactMap);
+        
+        // Marcador de la oficina principal
+        const officeMarker = L.marker([19.4326, -99.1332]).addTo(contactMap);
+        officeMarker.bindPopup(`
+            <b>GuiApp - Oficina Principal</b><br>
+            Av. Turismo 123, Centro<br>
+            Ciudad de México, México<br>
+            Tel: +52 (55) 1234-5678
+        `);
+        
+        // Funcionalidad FAQ
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.classList.remove('active');
+            } else {
+                // Cerrar todas las otras respuestas
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-toggle').forEach(tog => {
+                    tog.classList.remove('active');
+                });
+                
+                // Abrir la respuesta actual
+                answer.classList.add('active');
+                toggle.classList.add('active');
+            }
+        }
+        
+        // Validación del formulario
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí iría la lógica de envío del formulario
+            alert('¡Gracias por tu mensaje! Te responderemos en menos de 24 horas.');
+            
+            // Limpiar formulario
+            this.reset();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinos - GuiApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container {
+            height: 500px;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .destination-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .destinations-categories {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .category-tab {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .category-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .destination-detail-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .destination-detail-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .destination-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .destination-flag {
+            width: 60px;
+            height: 40px;
+            border-radius: 8px;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .destination-info h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        
+        .destination-info p {
+            margin: 0.5rem 0 0 0;
+            color: #666;
+        }
+        
+        .destination-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .destination-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 150px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .huila-section {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+        
+        .huila-content {
+            text-align: center;
+        }
+        
+        .huila-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .huila-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .huila-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .huila-feature {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .huila-feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .huila-feature h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .huila-feature p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>GuiApp</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="servicios.html" class="nav-link">Servicios</a>
+                    <a href="destinos.html" class="nav-link active">Destinos</a>
+                    <a href="acerca.html" class="nav-link">Acerca de</a>
+                    <a href="contacto.html" class="nav-link">Contacto</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero destination-hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-globe-americas"></i>
+            </div>
+            <h1 class="hero-title">Destinos del Mundo</h1>
+            <p class="hero-subtitle">Explora lugares increíbles</p>
+            <p class="hero-description">
+                Descubre destinos fascinantes, desde ciudades vibrantes hasta paraísos naturales. 
+                Cada lugar tiene su propia historia, cultura y experiencias únicas esperando ser exploradas.
+            </p>
+        </div>
+    </section>
+
+    <!-- Categorías de Destinos -->
+    <section class="destinations-categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explora por Categorías</h2>
+                <p class="section-subtitle">
+                    Encuentra el destino perfecto según tus intereses
+                </p>
+            </div>
+            
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="todos">Todos los Destinos</div>
+                <div class="category-tab" data-category="ciudades">Ciudades</div>
+                <div class="category-tab" data-category="playas">Playas</div>
+                <div class="category-tab" data-category="montañas">Montañas</div>
+                <div class="category-tab" data-category="cultural">Cultural</div>
+                <div class="category-tab" data-category="aventura">Aventura</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinos Detallados -->
+    <section class="destinations-detailed">
+        <div class="container">
+            <!-- París -->
+            <div class="destination-detail-card" data-category="ciudades cultural">
+                <div class="destination-header">
+                    <img src="https://via.placeholder.com/60x40/003399/FFFFFF?text=FR" alt="Francia" class="destination-flag">
+                    <div class="destination-info">
+                        <h3>París, Francia</h3>
+                        <p>La Ciudad de la Luz</p>
+                    </div>
+                </div>
+                
+                <p class="destination-description">
+                    París, la capital de Francia, es una de las ciudades más románticas y culturalmente 
+                    ricas del mundo. Conocida por su arquitectura icónica, museos de clase mundial, 
+                    gastronomía excepcional y moda de vanguardia, París ofrece una experiencia única 
+                    que combina historia, arte y modernidad.
+                </p>
+                
+                <div class="destination-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">2.2M</span>
+                        <span class="stat-label">Habitantes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">105 km²</span>
+                        <span class="stat-label">Superficie</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">30M+</span>
+                        <span class="stat-label">Turistas/año</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">€€€</span>
+                        <span class="stat-label">Precio Promedio</span>
+                    </div>
+                </div>
+                
+                <div class="destination-gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/FF6B6B/FFFFFF?text=Torre+Eiffel" alt="Torre Eiffel">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/4ECDC4/FFFFFF?text=Louvre" alt="Museo del Louvre">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/45B7D1/FFFFFF?text=Notre+Dame" alt="Notre Dame">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/96CEB4/FFFFFF?text=Champs+Élysées" alt="Champs Élysées">
+                    </div>
+                </div>
+                
+                <div class="destination-features">
+                    <h4>Atracciones Principales:</h4>
+                    <ul>
+                        <li><i class="fas fa-landmark"></i> Torre Eiffel - El símbolo de París</li>
+                        <li><i class="fas fa-palace"></i> Museo del Louvre - Arte y cultura</li>
+                        <li><i class="fas fa-church"></i> Catedral de Notre Dame - Arquitectura gótica</li>
+                        <li><i class="fas fa-tree"></i> Jardines de Luxemburgo - Naturaleza urbana</li>
+                        <li><i class="fas fa-shopping-bag"></i> Champs-Élysées - Compras y entretenimiento</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tokio -->
+            <div class="destination-detail-card" data-category="ciudades cultural">
+                <div class="destination-header">
+                    <img src="https://via.placeholder.com/60x40/BC002D/FFFFFF?text=JP" alt="Japón" class="destination-flag">
+                    <div class="destination-info">
+                        <h3>Tokio, Japón</h3>
+                        <p>Donde la tradición se encuentra con la innovación</p>
+                    </div>
+                </div>
+                
+                <p class="destination-description">
+                    Tokio, la capital de Japón, es una metrópolis fascinante que combina perfectamente 
+                    la tradición milenaria con la tecnología más avanzada. Desde templos antiguos hasta 
+                    rascacielos futuristas, Tokio ofrece una experiencia única donde cada barrio tiene 
+                    su propia personalidad y encanto.
+                </p>
+                
+                <div class="destination-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">14M</span>
+                        <span class="stat-label">Habitantes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2,194 km²</span>
+                        <span class="stat-label">Superficie</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">40M+</span>
+                        <span class="stat-label">Turistas/año</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">¥¥¥</span>
+                        <span class="stat-label">Precio Promedio</span>
+                    </div>
+                </div>
+                
+                <div class="destination-gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/FF6B6B/FFFFFF?text=Shibuya" alt="Shibuya">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/4ECDC4/FFFFFF?text=Senso-ji" alt="Senso-ji">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/45B7D1/FFFFFF?text=Tokyo+Tower" alt="Tokyo Tower">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/96CEB4/FFFFFF?text=Tsukiji" alt="Tsukiji Market">
+                    </div>
+                </div>
+                
+                <div class="destination-features">
+                    <h4>Atracciones Principales:</h4>
+                    <ul>
+                        <li><i class="fas fa-crossing"></i> Cruce de Shibuya - El cruce más famoso del mundo</li>
+                        <li><i class="fas fa-torii-gate"></i> Templo Senso-ji - El templo más antiguo de Tokio</li>
+                        <li><i class="fas fa-tower-observation"></i> Tokyo Tower - Vistas panorámicas</li>
+                        <li><i class="fas fa-fish"></i> Mercado de Tsukiji - Gastronomía fresca</li>
+                        <li><i class="fas fa-tree"></i> Parque Ueno - Naturaleza y museos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Nueva York -->
+            <div class="destination-detail-card" data-category="ciudades cultural">
+                <div class="destination-header">
+                    <img src="https://via.placeholder.com/60x40/002868/FFFFFF?text=US" alt="Estados Unidos" class="destination-flag">
+                    <div class="destination-info">
+                        <h3>Nueva York, Estados Unidos</h3>
+                        <p>La ciudad que nunca duerme</p>
+                    </div>
+                </div>
+                
+                <p class="destination-description">
+                    Nueva York, la Gran Manzana, es el centro financiero, cultural y artístico más 
+                    importante del mundo. Con sus rascacielos icónicos, museos de clase mundial, 
+                    Broadway y la diversidad cultural, NYC ofrece una experiencia urbana incomparable.
+                </p>
+                
+                <div class="destination-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">8.8M</span>
+                        <span class="stat-label">Habitantes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">778 km²</span>
+                        <span class="stat-label">Superficie</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">66M+</span>
+                        <span class="stat-label">Turistas/año</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">$$$</span>
+                        <span class="stat-label">Precio Promedio</span>
+                    </div>
+                </div>
+                
+                <div class="destination-gallery">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/FF6B6B/FFFFFF?text=Times+Square" alt="Times Square">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/4ECDC4/FFFFFF?text=Central+Park" alt="Central Park">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/45B7D1/FFFFFF?text=Statue+of+Liberty" alt="Statue of Liberty">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/200x150/96CEB4/FFFFFF?text=Brooklyn+Bridge" alt="Brooklyn Bridge">
+                    </div>
+                </div>
+                
+                <div class="destination-features">
+                    <h4>Atracciones Principales:</h4>
+                    <ul>
+                        <li><i class="fas fa-theater-masks"></i> Times Square - El centro del entretenimiento</li>
+                        <li><i class="fas fa-tree"></i> Central Park - El pulmón verde de Manhattan</li>
+                        <li><i class="fas fa-monument"></i> Estatua de la Libertad - Símbolo de libertad</li>
+                        <li><i class="fas fa-building"></i> Empire State Building - Vistas panorámicas</li>
+                        <li><i class="fas fa-bridge"></i> Brooklyn Bridge - Arquitectura histórica</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Especial del Huila -->
+    <section class="huila-section">
+        <div class="container">
+            <div class="huila-content">
+                <h2 class="huila-title">Descubre el Huila</h2>
+                <p class="huila-description">
+                    El Huila, ubicado en el sur de Colombia, es un departamento lleno de contrastes 
+                    y belleza natural. Desde las altas montañas de la Cordillera Central hasta las 
+                    cálidas tierras del valle del Magdalena, el Huila ofrece experiencias únicas 
+                    para todos los tipos de viajeros.
+                </p>
+                
+                <div class="huila-features">
+                    <div class="huila-feature">
+                        <div class="huila-feature-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3>Naturaleza Salvaje</h3>
+                        <p>Explora el Parque Nacional Natural Puracé, las cascadas de San Agustín y los paisajes montañosos que te dejarán sin aliento.</p>
+                    </div>
+                    
+                    <div class="huila-feature">
+                        <div class="huila-feature-icon">
+                            <i class="fas fa-monument"></i>
+                        </div>
+                        <h3>Arqueología Misteriosa</h3>
+                        <p>Descubre las enigmáticas estatuas de San Agustín, declaradas Patrimonio de la Humanidad por la UNESCO.</p>
+                    </div>
+                    
+                    <div class="huila-feature">
+                        <div class="huila-feature-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <h3>Café de Altura</h3>
+                        <p>Degusta el mejor café de Colombia en las fincas cafeteras del Huila, conocidas por su calidad excepcional.</p>
+                    </div>
+                    
+                    <div class="huila-feature">
+                        <div class="huila-feature-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Gastronomía Local</h3>
+                        <p>Prueba los platos típicos como el asado huilense, el tamal y los productos de la región.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa del Huila -->
+    <section class="huila-map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Mapa Interactivo del Huila</h2>
+                <p class="section-subtitle">
+                    Explora los principales destinos y atracciones del departamento
+                </p>
+            </div>
+            
+            <div class="map-container" id="huilaMap"></div>
+            
+            <div class="map-info">
+                <h3>Puntos de Interés Destacados:</h3>
+                <div class="map-points">
+                    <div class="map-point">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Neiva - Capital del departamento</span>
+                    </div>
+                    <div class="map-point">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Agustín - Sitio arqueológico</span>
+                    </div>
+                    <div class="map-point">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Parque Nacional Puracé</span>
+                    </div>
+                    <div class="map-point">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Desierto de la Tatacoa</span>
+                    </div>
+                    <div class="map-point">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Pitalito - Capital cafetera</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>GuiApp</span>
+                        </div>
+                        <p class="footer-description">
+                            Tu compañero perfecto para descubrir el mundo. Más que una app, 
+                            somos tu guía personal hacia aventuras extraordinarias.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Servicios</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Mapas Interactivos</a></li>
+                            <li><a href="#">Reservas de Hoteles</a></li>
+                            <li><a href="#">Vuelos Baratos</a></li>
+                            <li><a href="#">Restaurantes</a></li>
+                            <li><a href="#">Guías Turísticas</a></li>
+                            <li><a href="#">Planificador de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Destinos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Europa</a></li>
+                            <li><a href="#">Asia</a></li>
+                            <li><a href="#">América del Norte</a></li>
+                            <li><a href="#">América del Sur</a></li>
+                            <li><a href="#">África</a></li>
+                            <li><a href="#">Oceanía</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Soporte</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Centro de Ayuda</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Términos de Uso</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Blog de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Descarga la App</h3>
+                        <p class="footer-app-text">Lleva GuiApp contigo a donde vayas</p>
+                        <div class="footer-app-buttons">
+                            <a href="#" class="app-button">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span>Descargar en</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="app-button">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span>Disponible en</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 GuiApp. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Cookies</a>
+                        <a href="#">Mapa del Sitio</a>
+                        <a href="#">Accesibilidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Mapa del Huila
+        const map = L.map('huilaMap').setView([2.9273, -75.2819], 8);
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // Puntos de interés del Huila
+        const huilaPoints = [
+            {
+                name: 'Neiva',
+                coords: [2.9273, -75.2819],
+                description: 'Capital del departamento del Huila'
+            },
+            {
+                name: 'San Agustín',
+                coords: [1.8797, -76.2703],
+                description: 'Sitio arqueológico declarado Patrimonio de la Humanidad'
+            },
+            {
+                name: 'Parque Nacional Puracé',
+                coords: [2.3167, -76.4000],
+                description: 'Área protegida con volcanes y lagunas'
+            },
+            {
+                name: 'Desierto de la Tatacoa',
+                coords: [3.2333, -75.1667],
+                description: 'Desierto único en Colombia'
+            },
+            {
+                name: 'Pitalito',
+                coords: [1.8539, -76.0508],
+                description: 'Capital cafetera del Huila'
+            }
+        ];
+        
+        huilaPoints.forEach(point => {
+            const marker = L.marker(point.coords).addTo(map);
+            marker.bindPopup(`<b>${point.name}</b><br>${point.description}`);
+        });
+        
+        // Funcionalidad de filtros de categorías
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remover clase active de todos los tabs
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                // Agregar clase active al tab clickeado
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const destinations = document.querySelectorAll('.destination-detail-card');
+                
+                destinations.forEach(dest => {
+                    if (category === 'todos' || dest.dataset.category.includes(category)) {
+                        dest.style.display = 'block';
+                    } else {
+                        dest.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 

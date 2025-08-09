@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de - GuiApp</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #667eea;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #667eea;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+        
+        .timeline-title {
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .team-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .team-position {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .team-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .team-social a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .values-section {
+            padding: 4rem 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .value-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .value-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .achievements-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .achievement-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .achievement-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .achievement-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .achievement-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .mission-vision {
+            padding: 4rem 0;
+        }
+        
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card, .vision-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .mission-icon, .vision-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+        
+        .mission-title, .vision-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .mission-description, .vision-description {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>GuiApp</span>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="servicios.html" class="nav-link">Servicios</a>
+                    <a href="destinos.html" class="nav-link">Destinos</a>
+                    <a href="acerca.html" class="nav-link active">Acerca de</a>
+                    <a href="contacto.html" class="nav-link">Contacto</a>
+                </div>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero about-hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <h1 class="hero-title">Acerca de GuiApp</h1>
+            <p class="hero-subtitle">Nuestra historia, misión y visión</p>
+            <p class="hero-description">
+                Conoce más sobre el equipo que está detrás de GuiApp, nuestra historia, 
+                valores y el compromiso que tenemos con hacer que cada viaje sea extraordinario.
+            </p>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section class="history-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestra Historia</h2>
+                <p class="section-subtitle">
+                    Desde una idea simple hasta una plataforma global de viajes
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-title">El Nacimiento de una Idea</div>
+                        <p>Un grupo de viajeros apasionados se reunió en un café de Bogotá para discutir 
+                        los problemas que enfrentaban al planificar sus viajes. Nacía la idea de GuiApp.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-title">Primer Prototipo</div>
+                        <p>Desarrollamos el primer prototipo de la aplicación con funcionalidades básicas 
+                        de mapas y recomendaciones de lugares. Comenzamos con 100 usuarios beta.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-title">Lanzamiento Oficial</div>
+                        <p>GuiApp se lanza oficialmente en las tiendas de aplicaciones. En los primeros 
+                        6 meses alcanzamos 10,000 usuarios activos en Colombia.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-title">Expansión Regional</div>
+                        <p>Expandimos nuestros servicios a toda América Latina. Alcanzamos 100,000 
+                        usuarios y comenzamos a ofrecer reservas de hoteles y vuelos.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-title">Crecimiento Global</div>
+                        <p>GuiApp llega a Europa y Asia. Implementamos inteligencia artificial para 
+                        recomendaciones personalizadas. Alcanzamos 500,000 usuarios.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-title">Innovación Tecnológica</div>
+                        <p>Lanzamos nuevas funcionalidades como realidad aumentada para exploración 
+                        de destinos y planificador de viajes con IA. 1 millón de usuarios activos.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-title">Líder en Turismo Digital</div>
+                        <p>GuiApp se consolida como una de las principales plataformas de turismo 
+                        digital en Latinoamérica, con presencia en 50 países y 2 millones de usuarios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Misión y Visión</h2>
+                <p class="section-subtitle">
+                    Los pilares que guían nuestro trabajo diario
+                </p>
+            </div>
+            
+            <div class="mission-vision-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="mission-title">Nuestra Misión</h3>
+                    <p class="mission-description">
+                        Democratizar el acceso a experiencias de viaje extraordinarias, proporcionando 
+                        herramientas tecnológicas innovadoras que permitan a cada persona descubrir, 
+                        planificar y disfrutar de viajes únicos y memorables, sin importar su presupuesto 
+                        o experiencia previa.
+                    </p>
+                </div>
+                
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="vision-title">Nuestra Visión</h3>
+                    <p class="vision-description">
+                        Ser la plataforma líder mundial en turismo digital, reconocida por nuestra 
+                        innovación tecnológica, compromiso con la sostenibilidad y capacidad de crear 
+                        conexiones auténticas entre viajeros y destinos, transformando la forma en que 
+                        el mundo viaja y descubre nuevas culturas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Valores</h2>
+                <p class="section-subtitle">
+                    Los principios que guían cada decisión que tomamos
+                </p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="value-title">Pasión por Viajar</h3>
+                    <p class="value-description">
+                        Cada miembro de nuestro equipo es un viajero apasionado que entiende 
+                        profundamente las necesidades y deseos de nuestros usuarios.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">Innovación Constante</h3>
+                    <p class="value-description">
+                        Buscamos constantemente nuevas formas de mejorar la experiencia de viaje 
+                        a través de la tecnología más avanzada.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="value-title">Comunidad</h3>
+                    <p class="value-description">
+                        Creemos en el poder de la comunidad de viajeros para compartir experiencias 
+                        y crear conexiones significativas.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="value-title">Sostenibilidad</h3>
+                    <p class="value-description">
+                        Promovemos el turismo responsable y sostenible, respetando las culturas 
+                        locales y el medio ambiente.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="value-title">Confianza</h3>
+                    <p class="value-description">
+                        Construimos relaciones duraderas basadas en la transparencia, honestidad 
+                        y confianza mutua con nuestros usuarios.
+                    </p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="value-title">Excelencia</h3>
+                    <p class="value-description">
+                        Nos esforzamos por ofrecer la mejor experiencia posible en cada interacción 
+                        y funcionalidad de nuestra plataforma.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">GuiApp en Números</h2>
+                <p class="section-subtitle">
+                    El impacto que hemos tenido en el mundo del turismo
+                </p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">2M+</span>
+                    <span class="stat-label">Usuarios Activos</span>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Países</span>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-number">1M+</span>
+                    <span class="stat-label">Destinos Únicos</span>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-number">500K+</span>
+                    <span class="stat-label">Reservas Realizadas</span>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-number">4.8★</span>
+                    <span class="stat-label">Rating Promedio</span>
+                </div>
+                
+                <div class="stat-card">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Soporte</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestro Equipo</h2>
+                <p class="section-subtitle">
+                    Conoce a las mentes brillantes detrás de GuiApp
+                </p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="team-name">Carlos Rodríguez</h3>
+                    <p class="team-position">CEO & Fundador</p>
+                    <p class="team-description">
+                        Emprendedor serial con más de 15 años de experiencia en tecnología y turismo. 
+                        Apasionado por conectar personas con experiencias únicas alrededor del mundo.
+                    </p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="team-name">Ana María López</h3>
+                    <p class="team-position">CTO</p>
+                    <p class="team-description">
+                        Ingeniera de sistemas con especialización en inteligencia artificial. 
+                        Lidera el desarrollo de las tecnologías más innovadoras de GuiApp.
+                    </p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="team-name">David Martínez</h3>
+                    <p class="team-position">Director de Producto</p>
+                    <p class="team-description">
+                        Experto en experiencia de usuario y diseño de productos digitales. 
+                        Se asegura de que cada funcionalidad de GuiApp sea intuitiva y útil.
+                    </p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="team-name">Laura Fernández</h3>
+                    <p class="team-position">Directora de Marketing</p>
+                    <p class="team-description">
+                        Estratega de marketing digital con experiencia en crecimiento de startups. 
+                        Construye conexiones auténticas con nuestra comunidad de viajeros.
+                    </p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="team-name">Miguel Ángel Silva</h3>
+                    <p class="team-position">Director de Operaciones</p>
+                    <p class="team-description">
+                        Experto en optimización de procesos y gestión de equipos. 
+                        Asegura que GuiApp funcione perfectamente para millones de usuarios.
+                    </p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="team-name">Sofia Jiménez</h3>
+                    <p class="team-position">Directora de Contenido</p>
+                    <p class="team-description">
+                        Periodista y viajera experimentada. Crea contenido auténtico y útil 
+                        que inspira a nuestros usuarios a explorar el mundo.
+                    </p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logros -->
+    <section class="achievements-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Logros y Reconocimientos</h2>
+                <p class="section-subtitle">
+                    Premios y reconocimientos que validan nuestro trabajo
+                </p>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="achievement-title">Mejor App de Turismo 2023</h3>
+                    <p class="achievement-description">
+                        Reconocimiento otorgado por la Asociación Latinoamericana de Turismo 
+                        por nuestra innovación y contribución al sector.
+                    </p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="achievement-title">Startup del Año</h3>
+                    <p class="achievement-description">
+                        Premio otorgado por la Cámara de Comercio de Bogotá por nuestro 
+                        crecimiento y impacto en la economía digital.
+                    </p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="achievement-title">Excelencia en UX</h3>
+                    <p class="achievement-description">
+                        Reconocimiento por el diseño de experiencia de usuario más intuitivo 
+                        en aplicaciones de turismo.
+                    </p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="achievement-title">Top 10 Apps Colombia</h3>
+                    <p class="achievement-description">
+                        GuiApp se posiciona entre las 10 mejores aplicaciones del país 
+                        según las tiendas de aplicaciones.
+                    </p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="achievement-title">Expansión Global</h3>
+                    <p class="achievement-description">
+                        Reconocimiento por nuestra exitosa expansión a 50 países 
+                        en solo 5 años de operación.
+                    </p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="achievement-title">Satisfacción del Cliente</h3>
+                    <p class="achievement-description">
+                        Premio por mantener una calificación de satisfacción superior 
+                        al 95% durante 3 años consecutivos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>GuiApp</span>
+                        </div>
+                        <p class="footer-description">
+                            Tu compañero perfecto para descubrir el mundo. Más que una app, 
+                            somos tu guía personal hacia aventuras extraordinarias.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Servicios</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Mapas Interactivos</a></li>
+                            <li><a href="#">Reservas de Hoteles</a></li>
+                            <li><a href="#">Vuelos Baratos</a></li>
+                            <li><a href="#">Restaurantes</a></li>
+                            <li><a href="#">Guías Turísticas</a></li>
+                            <li><a href="#">Planificador de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Destinos</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Europa</a></li>
+                            <li><a href="#">Asia</a></li>
+                            <li><a href="#">América del Norte</a></li>
+                            <li><a href="#">América del Sur</a></li>
+                            <li><a href="#">África</a></li>
+                            <li><a href="#">Oceanía</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Soporte</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Centro de Ayuda</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Términos de Uso</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">Contacto</a></li>
+                            <li><a href="#">Blog de Viajes</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Descarga la App</h3>
+                        <p class="footer-app-text">Lleva GuiApp contigo a donde vayas</p>
+                        <div class="footer-app-buttons">
+                            <a href="#" class="app-button">
+                                <i class="fab fa-apple"></i>
+                                <div>
+                                    <span>Descargar en</span>
+                                    <strong>App Store</strong>
+                                </div>
+                            </a>
+                            <a href="#" class="app-button">
+                                <i class="fab fa-google-play"></i>
+                                <div>
+                                    <span>Disponible en</span>
+                                    <strong>Google Play</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 GuiApp. Todos los derechos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Cookies</a>
+                        <a href="#">Mapa del Sitio</a>
+                        <a href="#">Accesibilidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
