@@ -3,6 +3,63 @@ const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const header = document.querySelector('.header');
 const contactForm = document.getElementById('contactForm');
+const themeToggle = document.getElementById('theme-toggle');
+
+// Theme Management
+let currentTheme = localStorage.getItem('theme') || 'light';
+
+// Initialize theme
+function initializeTheme() {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon();
+    updateHeaderTheme();
+}
+
+// Toggle theme function
+function toggleTheme() {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    localStorage.setItem('theme', currentTheme);
+    updateThemeIcon();
+    updateHeaderTheme();
+    
+    // Add rotation animation
+    themeToggle.classList.add('rotating');
+    setTimeout(() => {
+        themeToggle.classList.remove('rotating');
+    }, 500);
+}
+
+// Update header theme
+function updateHeaderTheme() {
+    if (window.scrollY > 100) {
+        header.style.background = currentTheme === 'dark' 
+            ? 'rgba(15, 23, 42, 0.98)' 
+            : 'rgba(255, 255, 255, 0.98)';
+    } else {
+        header.style.background = currentTheme === 'dark' 
+            ? 'rgba(15, 23, 42, 0.95)' 
+            : 'rgba(255, 255, 255, 0.95)';
+    }
+}
+
+// Update theme icon
+function updateThemeIcon() {
+    const icon = themeToggle.querySelector('i');
+    if (currentTheme === 'dark') {
+        icon.className = 'fas fa-sun';
+    } else {
+        icon.className = 'fas fa-moon';
+    }
+}
+
+// Theme toggle event listener
+if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
+// Initialize theme on page load
+initializeTheme();
 
 // Mobile Navigation Toggle
 navToggle.addEventListener('click', () => {
@@ -34,13 +91,17 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Header scroll effect
+// Header scroll effect simplificado
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
+        header.style.background = currentTheme === 'dark' 
+            ? 'rgba(15, 23, 42, 0.98)' 
+            : 'rgba(255, 255, 255, 0.98)';
         header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
     } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.background = currentTheme === 'dark' 
+            ? 'rgba(15, 23, 42, 0.95)' 
+            : 'rgba(255, 255, 255, 0.95)';
         header.style.boxShadow = 'none';
     }
 });
