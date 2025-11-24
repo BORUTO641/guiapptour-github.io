@@ -4,6 +4,18 @@ import { BusinessReviews } from "@/components/business-reviews"
 import { BusinessContact } from "@/components/business-contact"
 import { BusinessSimilar } from "@/components/business-similar"
 
+export async function generateStaticParams() {
+  // Generate static params for business IDs 1-6
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' },
+    { id: '6' },
+  ]
+}
+
 interface BusinessDetailPageProps {
   readonly params: Promise<{
     readonly id: string
