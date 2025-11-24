@@ -1,10 +1,9 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
-    images: {
-        unoptimized: true,
-    },
-    basePath: '/guiapptour-github.io',
-    assetPrefix: '/guiapptour-github.io/',
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
